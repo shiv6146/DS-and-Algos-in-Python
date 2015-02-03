@@ -1,6 +1,7 @@
 import turtle
 
 def draw_tree(turtleObj, branchLength):
+	#Base case of recursion(Exit condition)
 	if branchLength > 5:
 		turtleObj.forward(branchLength)
 		turtleObj.right(20)
