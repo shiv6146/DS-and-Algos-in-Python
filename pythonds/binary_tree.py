@@ -31,3 +31,24 @@ class BinaryTree:
 
 	def set_root_val(self, newNodeVal):
 		self.rootval = newNodeVal
+
+	def preorder(self):
+		print self.rootval
+		if self.left_child:
+			return self.left_child.preorder()
+		if self.right_child:
+			return self.right_child.preorder()
+
+	def inorder(self):
+		if self.left_child:
+			return self.left_child.inorder()
+		print self.rootval
+		if self.right_child:
+			return self.right_child.inorder()
+
+	def postorder(self):
+		if self.left_child:
+			return self.left_child.postorder()
+		if self.right_child:
+			return self.right_child.postorder()
+		print self.rootval

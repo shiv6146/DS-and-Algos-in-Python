@@ -43,5 +43,41 @@ def evaluate_parse_tree(parseTreeRoot):
 	else:
 		return parseTreeRoot.get_root_val()
 
+#Application of preorder traversal
+def preorder(tree):
+	if tree:
+		print tree.get_root_val()
+		preorder(tree.get_left_child())
+		preorder(tree.get_right_child())
+
+#Application of inorder traversal
+def print_exp(tree):
+	exp = ""
+	if tree:
+		exp = "(" + print_exp(tree.get_left_child())
+		exp += str(tree.get_root_val())
+		exp += print_exp(tree.get_right_child()) + ")"
+	return exp
+
+#Application of postorder traversal
+def postorder_eval(tree):
+	operators = {"*":operator.mul, "/":operator.truediv, "+":operator.add, "-":operator.sub}
+
+	res1 = None
+	res2 = None
+
+	if tree:
+		res1 = postorder_eval(tree.get_left_child())
+		res2 = postorder_eval(tree.get_right_child())
+
+		if res1 and res2:
+			fn = operators[tree.get_root_val()]
+			return fn(res1, res2)
+		else:
+			return tree.get_root_val()
+
 pt = build_parse_tree("( ( 10 + 5 ) * 3 )")
-print evaluate_parse_tree(pt)
+#print evaluate_parse_tree(pt)
+#preorder(pt)
+#print print_exp(pt)
+#print postorder_eval(pt)
